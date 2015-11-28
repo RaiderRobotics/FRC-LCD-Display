@@ -2,6 +2,8 @@
 
 :large_blue_diamond: The source code here demonstrates how to set up a 4x20 LCD panel display with the Roborio (for FRC First Robotics Competition).
 
+All you have to do to use it is add the code that I've written, and then run the command `LCDwriteString(String s, int line);` where String s is the string to write to the display, and int line is line number (1-4).
+
 -------------------
 ##  First the hardware:
 

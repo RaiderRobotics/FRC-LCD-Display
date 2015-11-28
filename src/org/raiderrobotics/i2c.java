@@ -144,7 +144,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	//This is the "public" method. The one that is actually used by other code to write to the display.
-	void writeString(String s, int line) {
+	void LCDwriteString(String s, int line) {
 		switch (line) {
 		case 1: LCDwriteCMD(0x80); break;
 		case 2: LCDwriteCMD(0xC0); break;
@@ -192,15 +192,15 @@ public class Robot extends IterativeRobot {
 
 		if(stick1.getRawButton(3)) {        	
 			LCDwriteCMD(LCD_CLEARDISPLAY);
-			writeString("FRC Team 5024",2);
-			writeString("Raider Robotics",4);
+			LCDwriteString("FRC Team 5024",2);
+			LCDwriteString("Raider Robotics",4);
 		}
 		if(stick1.getRawButton(4)) {
 			LCDwriteCMD(LCD_CLEARDISPLAY);
-			writeString("Stop pushing my",1);
-			writeString("buttons!!!",2);
-			writeString("Self destruct",3);
-			writeString("activated...",4);
+			LCDwriteString("Stop pushing my",1);
+			LCDwriteString("buttons!!!",2);
+			LCDwriteString("Self destruct",3);
+			LCDwriteString("activated...",4);
 		}
 
 		driveTrain.arcadeDrive(yAxis*MAXSPEED, xAxis*MAXSPEED);
@@ -208,9 +208,9 @@ public class Robot extends IterativeRobot {
 		//because of refresh problems, this works if you just quickly press button1 instead of holding it down,
 		if(stick1.getRawButton(1)) {
 			LCDwriteCMD(LCD_CLEARDISPLAY);
-			writeString("Joystick values:",1);
-			writeString("x="+xAxis,2);
-			writeString("y="+yAxis,3);
+			LCDwriteString("Joystick values:",1);
+			LCDwriteString("x="+xAxis,2);
+			LCDwriteString("y="+yAxis,3);
 		}
 	}
 

@@ -4,12 +4,18 @@
 
 All you have to do to use it is add the code that I've written, and then run the command `LCDwriteString(String s, int line);` where String s is the string to write to the display, and int line is line number (1-4).
 
+![p1](https://raw.githubusercontent.com/RaiderRobotics/FRC-LCD-Display/master/LCD1.jpg)
+![p2](https://raw.githubusercontent.com/RaiderRobotics/FRC-LCD-Display/master/joystick.jpg)
+![p3](https://raw.githubusercontent.com/RaiderRobotics/FRC-LCD-Display/master/LCD2.jpg)
+
 -------------------
 ##  First the hardware:
 
 :black_small_square: We're using a display like the one in the photo 
 
 ![photo1](https://github.com/RaiderRobotics/FRC-LCD-Display/blob/master/4x20-LCD-panel.jpg). 
+
+![p5](https://raw.githubusercontent.com/RaiderRobotics/FRC-LCD-Display/master/LCDback.jpg)
 
 :black_small_square: Note that it comes with a backplate thing mounted on it. This backplate already has all of the connections between the LCD display and the I2C protocol.
 

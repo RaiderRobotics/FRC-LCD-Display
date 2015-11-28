@@ -14,8 +14,8 @@
 ![photo2](https://github.com/RaiderRobotics/FRC-LCD-Display/blob/master/YwRobotLCD-CU-450.jpg) 
 
 :black_small_square: The connectors on the back of the LCD display do not match the connectors on the RoboRIO. The RoboRIO has the pins in a different order. Also note that the LCD display requires 5V, not the 3.3V on the RoboRIO I2C connector. We're just using 5V from a digital IO pin.  You could also use the 5V from the Voltage Regulator Module.
+<img src="https://github.com/RaiderRobotics/FRC-LCD-Display/blob/master/I2C_connector.jpg" width="300" height="340">
 
-![photo3](https://github.com/RaiderRobotics/FRC-LCD-Display/blob/master/I2C_connector.jpg) 
 
 -------------------------------
 

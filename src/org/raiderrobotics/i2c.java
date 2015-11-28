@@ -161,6 +161,7 @@ public class Robot extends IterativeRobot {
 		case 2: LCDwriteCMD(0xC0); break;
 		case 3: LCDwriteCMD(0x94); break;
 		case 4: LCDwriteCMD(0xD4); break;
+		default: return;	//invalid line number does nothing.
 		}
 
 		//limit to 20 chars/line so we don't have to worry about overflow messing up the display

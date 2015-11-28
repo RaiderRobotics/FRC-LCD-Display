@@ -1,22 +1,17 @@
-/****
-References:
-Working Python Code: https://github.com/salamander2/RaspberryPi/tree/master/programs/LCD
-
-LCD panel display documentation:  http://www.microcontrollerboard.com/lcd.html
-Using Java to access I2C devices:  https://docs.oracle.com/javame/8.1/me-dev-guide/i2c.htm
-Other hardware examples: http://letsmakerobots.com/content/drive-standard-hd44780-lcd-using-pcf8574-and-i2c
-
-WPI First Source Code: https://usfirst.collab.net/gerrit/gitweb?p=allwpilib.git;f=wpilibj/wpilibjava/src/main/java/edu/wpi/first/wpilibj/I2C.java;h=8476
-(not very useful)
-
- ****/
 package org.raiderrobotics;
 
 import edu.wpi.first.wpilibj.*;
 
-/*
-TESTING I2C LCD DISPLAY
+/* 
+ * LCD display panel code written by Michael Harwood, FRC Team 5024. November 2015.
+ * Please see https://github.com/RaiderRobotics/FRC-LCD-Display for source code repository and complete documentation.
+ *
+ * This java code is not originally mine. 
+ * It is based on my python code which in turn came from Paul Barber: https://github.com/paulbarber/raspi-gpio
+ *
+ * Feel free to copy it and modify it as desired
  */
+
 public class Robot extends IterativeRobot {
 
 	/* **********************************************************
@@ -75,6 +70,7 @@ public class Robot extends IterativeRobot {
 
 	final static double MAXSPEED = 0.50;
 
+	//	instance variables
 	RobotDrive driveTrain;
 	Joystick stick1;
 	Talon talon1, talon2;
@@ -101,14 +97,6 @@ public class Robot extends IterativeRobot {
 	 *      Methods for using LCD Display
 	 * **************************************************************************/
 
-	/*
-	 * NOTES:
-	 *  reg is always 0. This is either the I2C controller or the register on the I2C device
-	 *  The LCD dispaly has only one register, but then again, it also has two registers.
-	 *  The registers are INTERNAL and are selected by using the Rs bit or not.
-	 *  Thus, we are always writing to I2C reg 0.
-	 *   
-	 */
 	void initLCD() {
 		lcdDisplay = new I2C(I2C.Port.kOnboard, 0x27);
 
@@ -155,6 +143,7 @@ public class Robot extends IterativeRobot {
 		zsleep(1);
 	}
 
+	//This is the "public" method. The one that is actually used by other code to write to the display.
 	void writeString(String s, int line) {
 		switch (line) {
 		case 1: LCDwriteCMD(0x80); break;
@@ -175,6 +164,10 @@ public class Robot extends IterativeRobot {
 	 *     End of LCD methods
 	 * ****************************************************************************************/
 
+
+
+	/****************************************** VERY SIMPLE ROBOT DRIVE CODE *****************/
+	
 	@Override
 	public void autonomousInit(){
 		startTime = System.currentTimeMillis();   	
@@ -182,8 +175,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-		if(System.currentTimeMillis() - startTime < 2000)//for 2 seconds
-			driveTrain.drive(0.1,0.0);//run at 50%
+		if(System.currentTimeMillis() - startTime < 2000)	//for 2 seconds
+			driveTrain.drive(0.1,0.0);
 		else
 			driveTrain.stopMotor();    
 	}
@@ -193,16 +186,16 @@ public class Robot extends IterativeRobot {
 		double xAxis = stick1.getX();
 		double yAxis = stick1.getY();
 
-		if(stick1.getRawButton(2)){
+		if(stick1.getRawButton(2)) {
 			LCDwriteCMD(LCD_CLEARDISPLAY);
 		}
 
-		if(stick1.getRawButton(3)){        	
+		if(stick1.getRawButton(3)) {        	
 			LCDwriteCMD(LCD_CLEARDISPLAY);
 			writeString("FRC Team 5024",2);
 			writeString("Raider Robotics",4);
 		}
-		if(stick1.getRawButton(4)){
+		if(stick1.getRawButton(4)) {
 			LCDwriteCMD(LCD_CLEARDISPLAY);
 			writeString("Stop pushing my",1);
 			writeString("buttons!!!",2);
@@ -213,7 +206,7 @@ public class Robot extends IterativeRobot {
 		driveTrain.arcadeDrive(yAxis*MAXSPEED, xAxis*MAXSPEED);
 
 		//because of refresh problems, this works if you just quickly press button1 instead of holding it down,
-		if(stick1.getRawButton(1)){
+		if(stick1.getRawButton(1)) {
 			LCDwriteCMD(LCD_CLEARDISPLAY);
 			writeString("Joystick values:",1);
 			writeString("x="+xAxis,2);

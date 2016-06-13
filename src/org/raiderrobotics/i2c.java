@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 	// flags for function set
 	private static final int LCD_8BITMODE = 0x10;
 	private static final int LCD_4BITMODE = 0x00;
-	private static final int LCD_2LINE = 0x08;	//for 2 or 4 lines actualy
+	private static final int LCD_2LINE = 0x08;	//for 2 or 4 lines actually
 	private static final int LCD_1LINE = 0x00;
 	private static final int LCD_5x10DOTS = 0x04;	//seldom used!!
 	private static final int LCD_5x8DOTS = 0x00;	
